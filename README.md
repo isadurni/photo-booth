@@ -4,7 +4,7 @@ Web App where the user uploads three images and selects filters to generate a me
 
 ## Demo
 
-![Demo](https://www.youtube.com/watch?v=EYt7V7GNvZc&ab_channel=IgnacioSadurni)
+[Watch Video Demo Here](https://www.youtube.com/watch?v=EYt7V7GNvZc&ab_channel=IgnacioSadurni)
 
 ## Technologies
 
