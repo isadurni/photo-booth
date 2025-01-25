@@ -1,6 +1,7 @@
 # Photo Booth App 
 
 Dynamic photo strip generator built with Flask and PIL
+
 [Watch Video Demo Here](https://www.youtube.com/watch?v=EYt7V7GNvZc&ab_channel=IgnacioSadurni)
 
 ## About
