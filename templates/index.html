@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Booth App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Photo Booth Strip Generator</h1>
+    <p>Insert your favorite three images and apply filters to create a memorable photo strip.</p>
+    <form action="/" method="post" enctype="multipart/form-data">
+        {% for i in range(1, 4) %}
+        <div>
+            <label for="image{{ i }}">Select image #{{ i }}:</label>
+            <input type="file" id="image{{ i }}" name="image{{ i }}" required>
+            <select name="filter{{ i }}">
+                <option value="NORMAL">Normal</option>
+                <option value="POSTERIZE">Posterize</option>
+                <option value="GRAYSCALE">Grayscale</option>
+                <option value="SEPIA">Sepia</option>
+            </select>
+        </div>
+        {% endfor %}
+        <button type="submit">Download Photo Strip</button>
+    </form>
+</body>
+</html>
