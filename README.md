@@ -2,7 +2,7 @@
 
 Dynamic photo strip generator built with Flask and PIL
 
-[Watch video demo here!]([https://www.youtube.com/watch?v=EYt7V7GNvZc&ab_channel=IgnacioSadurni](https://www.youtube.com/watch?v=YvdplIZsOZU&ab_channel=IgnacioSadurni))
+[Watch video demo here!]([https://www.youtube.com/watch?v=EYt7V7GNvZc&ab_channel=IgnacioSadurni](https://www.youtube.com/watch?v=YvdplIZsOZU&ab_channel=IgnacioSadurni)
 
 ## About
 
