@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Booth Pro - Create Beautiful Photo Strips</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-camera-retro"></i>
+                <h1>Photo Booth Pro</h1>
+            </div>
+            <p class="subtitle">Create stunning photo strips with professional filters</p>
+        </header>
+
+        <main class="main-content">
+            <div class="upload-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-images"></i> Upload Your Photos</h2>
+                    <p>Select three images and choose your favorite filters to create a memorable photo strip</p>
+                </div>
+
+                <form action="/" method="post" enctype="multipart/form-data" class="upload-form">
+                    <div class="photo-grid">
+                        {% for i in range(1, 4) %}
+                        <div class="photo-upload">
+                            <div class="upload-area" id="upload-area-{{ i }}">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <label for="image{{ i }}" class="upload-label">
+                                    <span class="upload-text">Click to upload image {{ i }}</span>
+                                    <span class="upload-hint">or drag and drop</span>
+                                </label>
+                                <input type="file" id="image{{ i }}" name="image{{ i }}" required accept="image/*" class="file-input">
+                            </div>
+                            
+                            <div class="filter-section">
+                                <label for="filter{{ i }}" class="filter-label">
+                                    <i class="fas fa-magic"></i> Filter
+                                </label>
+                                <select name="filter{{ i }}" id="filter{{ i }}" class="filter-select">
+                                    <option value="NORMAL">Normal</option>
+                                    <option value="POSTERIZE">Posterize</option>
+                                    <option value="GRAYSCALE">Grayscale</option>
+                                    <option value="SEPIA">Sepia</option>
+                                </select>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="submit-section">
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-magic"></i>
+                            <span>Generate Photo Strip</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-palette"></i>
+                    <h3>Professional Filters</h3>
+                    <p>Apply stunning effects to your photos</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-download"></i>
+                    <h3>Instant Download</h3>
+                    <p>Get your photo strip ready to print</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-clock"></i>
+                    <h3>Quick & Easy</h3>
+                    <p>Create beautiful strips in seconds</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Photo Booth Pro</p>
+        </footer>
+    </div>
+
+    <script>
+        // Add drag and drop functionality
+        document.querySelectorAll('.upload-area').forEach(area => {
+            const input = area.querySelector('.file-input');
+            const label = area.querySelector('.upload-label');
+            
+            area.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                area.classList.add('dragover');
+            });
+            
+            area.addEventListener('dragleave', () => {
+                area.classList.remove('dragover');
+            });
+            
+            area.addEventListener('drop', (e) => {
+                e.preventDefault();
+                area.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    input.files = files;
+                    updateUploadLabel(label, files[0].name);
+                }
+            });
+            
+            input.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    updateUploadLabel(label, e.target.files[0].name);
+                }
+            });
+        });
+        
+        function updateUploadLabel(label, filename) {
+            const text = label.querySelector('.upload-text');
+            text.textContent = filename.length > 20 ? filename.substring(0, 20) + '...' : filename;
+            label.querySelector('.upload-hint').textContent = 'File selected';
+        }
+    </script>
+</body>
+</html>
